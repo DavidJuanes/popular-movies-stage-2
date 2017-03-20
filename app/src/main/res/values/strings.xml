@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Popular Movies - Stage 1</string>
+    <string name="action_filter">Filter</string>
+    <string name="title_activity_movie_details">MovieDetails</string>
+    <string name="title">Title</string>
+    <string name="release_date">Release date</string>
+    <string name="vote_average">Vote average</string>
+    <string name="synopsis">Synopsis</string>
+</resources>
