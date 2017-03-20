@@ -1,8 +1,8 @@
-package com.davidjuanes.popular_movies.one;
+package com.davidjuanes.popular_movies.two;
 
 import android.app.Application;
 
-import com.davidjuanes.popular_movies.one.services.MovieService;
+import com.davidjuanes.popular_movies.two.services.MovieService;
 
 /**
  * Application class for this app.

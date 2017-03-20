@@ -1,4 +1,4 @@
-package com.davidjuanes.popular_movies.one.platform;
+package com.davidjuanes.popular_movies.two.platform;
 
 import android.content.Context;
 import android.content.res.AssetManager;

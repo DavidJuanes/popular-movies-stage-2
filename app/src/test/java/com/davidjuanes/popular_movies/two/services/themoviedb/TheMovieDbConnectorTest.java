@@ -1,4 +1,4 @@
-package com.davidjuanes.popular_movies.one.services.themoviedb;
+package com.davidjuanes.popular_movies.two.services.themoviedb;
 
 import junit.framework.Assert;
 
@@ -6,8 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import okhttp3.Request;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by davidgonzalez on 28/01/2017.

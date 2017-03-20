@@ -1,8 +1,8 @@
-package com.davidjuanes.popular_movies.one.services;
+package com.davidjuanes.popular_movies.two.services;
 
-import com.davidjuanes.popular_movies.one.domain.Movie;
-import com.davidjuanes.popular_movies.one.services.themoviedb.TheMovieDbConnector;
-import com.davidjuanes.popular_movies.one.services.themoviedb.TheMovieDbException;
+import com.davidjuanes.popular_movies.two.domain.Movie;
+import com.davidjuanes.popular_movies.two.services.themoviedb.TheMovieDbConnector;
+import com.davidjuanes.popular_movies.two.services.themoviedb.TheMovieDbException;
 
 import junit.framework.Assert;
 
@@ -11,8 +11,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by davidgonzalez on 18/01/2017.

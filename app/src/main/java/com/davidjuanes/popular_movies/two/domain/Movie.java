@@ -1,4 +1,4 @@
-package com.davidjuanes.popular_movies.one.domain;
+package com.davidjuanes.popular_movies.two.domain;
 
 import org.json.JSONException;
 import org.json.JSONObject;

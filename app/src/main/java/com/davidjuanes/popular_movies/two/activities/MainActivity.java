@@ -1,4 +1,4 @@
-package com.davidjuanes.popular_movies.one.activities;
+package com.davidjuanes.popular_movies.two.activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,13 +14,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.davidjuanes.popular_movies.one.PopularMoviesApp;
-import com.davidjuanes.popular_movies.one.R;
-import com.davidjuanes.popular_movies.one.activities.main.MoviePosterAdapter;
-import com.davidjuanes.popular_movies.one.domain.Movie;
-import com.davidjuanes.popular_movies.one.services.MovieService;
+import com.davidjuanes.popular_movies.two.PopularMoviesApp;
+import com.davidjuanes.popular_movies.two.R;
+import com.davidjuanes.popular_movies.two.activities.main.MoviePosterAdapter;
+import com.davidjuanes.popular_movies.two.domain.Movie;
+import com.davidjuanes.popular_movies.two.services.MovieService;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 

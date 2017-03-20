@@ -1,4 +1,4 @@
-package com.davidjuanes.popular_movies.one.activities.main;
+package com.davidjuanes.popular_movies.two.activities.main;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -13,10 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.davidjuanes.popular_movies.one.R;
-import com.davidjuanes.popular_movies.one.activities.MovieDetailsActivity;
-import com.davidjuanes.popular_movies.one.domain.Movie;
-import com.squareup.picasso.NetworkPolicy;
+import com.davidjuanes.popular_movies.two.R;
+import com.davidjuanes.popular_movies.two.activities.MovieDetailsActivity;
+import com.davidjuanes.popular_movies.two.domain.Movie;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

@@ -1,12 +1,12 @@
-package com.davidjuanes.popular_movies.one.services;
+package com.davidjuanes.popular_movies.two.services;
 
 import android.content.Context;
 
-import com.davidjuanes.popular_movies.one.domain.JsonParsingRuntimeException;
-import com.davidjuanes.popular_movies.one.domain.Movie;
-import com.davidjuanes.popular_movies.one.platform.ApplicationPropertiesLoader;
-import com.davidjuanes.popular_movies.one.services.themoviedb.TheMovieDbConnector;
-import com.davidjuanes.popular_movies.one.services.themoviedb.TheMovieDbException;
+import com.davidjuanes.popular_movies.two.domain.JsonParsingRuntimeException;
+import com.davidjuanes.popular_movies.two.domain.Movie;
+import com.davidjuanes.popular_movies.two.platform.ApplicationPropertiesLoader;
+import com.davidjuanes.popular_movies.two.services.themoviedb.TheMovieDbConnector;
+import com.davidjuanes.popular_movies.two.services.themoviedb.TheMovieDbException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
