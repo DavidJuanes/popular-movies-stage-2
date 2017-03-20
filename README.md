@@ -1,5 +1,5 @@
-# Popular Movies - Stage 1
-First Android project for the Android Fast Track Course
+# Popular Movies - Stage 2
+Second Android project for the Android Fast Track Course
 
 ## Notes
 In order to use the Aplication you need to hold a valid theMovieDb API Key and place it in `app/src/main/assets/application.properties`
