@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -7,51 +8,49 @@
     tools:showIn="@layout/activity_movie_details">
 
     <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        card_view:cardCornerRadius="4dp"
         card_view:cardElevation="4dp"
-        card_view:cardUseCompatPadding="true"
-        card_view:cardCornerRadius="4dp">
-
+        card_view:cardUseCompatPadding="true">
 
         <LinearLayout
-            android:padding="15dp"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="15dp">
 
             <TextView
                 android:id="@+id/tv_title"
-                android:text=""
-                android:padding="3dip"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:layout_width="match_parent" />
+                android:padding="3dip"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <RatingBar
-                style="@style/RatingBar"
                 android:id="@+id/rating_bar"
-                android:rating="3.5"
-                android:stepSize="0.1"
-                android:numStars="10"
-                android:layout_gravity="center_horizontal"
+                style="@style/RatingBar"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:numStars="10"
+                android:rating="3.5"
+                android:stepSize="0.1" />
 
             <TextView
-                android:text=""
-                tools:text="6.5"
-                android:padding="3dip"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:id="@+id/tv_vote_average"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:padding="3dip"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                tools:text="6.5" />
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -62,16 +61,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="5dp">
+
                     <TextView
-                        android:text="@string/release_date"
                         android:padding="3dip"
+                        android:text="@string/release_date"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
                     <TextView
-                        android:text=""
+                        android:id="@+id/tv_release_date"
                         android:gravity="left"
                         android:padding="3dip"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:id="@+id/tv_release_date" />
+                        android:text=""
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 </TableRow>
 
@@ -79,24 +80,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="5dp">
+
                     <TextView
-                        android:text="@string/synopsis"
                         android:padding="3dip"
+                        android:text="@string/synopsis"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
                     <TextView
-                        android:text=""
                         android:gravity="start"
-                        android:padding="3dip" />
+                        android:padding="3dip"
+                        android:text="" />
 
                 </TableRow>
             </TableLayout>
 
             <TextView
-                android:padding="10dp"
                 android:id="@+id/tv_synopsis"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+                android:padding="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 

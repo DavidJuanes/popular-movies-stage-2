@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
+        android:id="@+id/nestedScrollView">
         <include layout="@layout/content_movie_details" />
     </android.support.v4.widget.NestedScrollView>
 
@@ -70,4 +70,20 @@
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:adjustViewBounds="false"
+        android:clickable="true"
+        android:src="@drawable/ic_star_empty"
+        app:fabSize="normal"
+        app:layout_anchor="@+id/nestedScrollView"
+        app:layout_anchorGravity="top|right"
+        app:srcCompat="@drawable/ic_star_empty" />
+
+    /
 </android.support.design.widget.CoordinatorLayout>

@@ -61,4 +61,6 @@ dependencies {
     testCompile 'org.json:json:20160810'
 
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta3'
+
+    compile 'com.android.support:design:25.3.0'
 }
