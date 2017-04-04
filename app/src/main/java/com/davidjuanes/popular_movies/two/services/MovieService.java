@@ -1,6 +1,7 @@
 package com.davidjuanes.popular_movies.two.services;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.davidjuanes.popular_movies.two.domain.JsonParsingRuntimeException;
 import com.davidjuanes.popular_movies.two.domain.Movie;
@@ -59,8 +60,7 @@ public class MovieService {
         }
     }
 
-    private List<Movie> parseJsonMoviesList(String json)
-    {
+    private List<Movie> parseJsonMoviesList(String json) throws MovieServiceException {
         List<Movie> movieList = new ArrayList<>();
         try {
             JSONObject jsonObject = new JSONObject(json);
@@ -69,6 +69,7 @@ public class MovieService {
             for(int i=0; i<jArray.length(); i++)
             {
                 Movie movie = Movie.fromJson(jArray.getJSONObject(i).toString());
+                loadTrailersIntoMovie(movie);
                 movieList.add(movie);
             }
 
@@ -76,6 +77,17 @@ public class MovieService {
             throw new JsonParsingRuntimeException(e);
         }
         return movieList;
+    }
+
+    private void loadTrailersIntoMovie(Movie movie) throws MovieServiceException {
+        try {
+            String json = theMovieDbConnector.getTrailersForMovie(movie.getId().toString());
+            Log.i("MovieService", "Trailers info in JSON: " + json);
+            movie.addTrailers(json);
+        } catch (Exception e) {
+            Log.e("MovieService", e.getMessage());
+            //throw new MovieServiceException(e);
+        }
     }
 
 }

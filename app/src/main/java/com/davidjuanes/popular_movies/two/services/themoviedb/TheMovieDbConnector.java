@@ -17,6 +17,7 @@ public class TheMovieDbConnector
     private static final String API_BASE_URL = "https://api.themoviedb.org/3/";
     private static final String POPULAR_MOVIES_ENDPOINT = "movie/popular";
     private static final String HIGHEST_RATED_MOVIES_ENDPOINT = "movie/top_rated";
+    private static final String TRAILERS_FOR_MOVIE_PATTERN = "movie/%s/videos";
     private String apiKey;
     private OkHttpClient client = new OkHttpClient();
 
@@ -32,6 +33,10 @@ public class TheMovieDbConnector
 
     public String getTopRatedMovies() throws TheMovieDbException {
         return performRequest(getHighestRatedRequest());
+    }
+
+    public String getTrailersForMovie(String movieId) throws TheMovieDbException {
+        return performRequest(getTrailersForMovieUrl(movieId));
     }
 
     private String performRequest(Request request) throws TheMovieDbException {
@@ -56,6 +61,10 @@ public class TheMovieDbConnector
     public Request getHighestRatedRequest()
     {
         return new Request.Builder().url(API_BASE_URL + HIGHEST_RATED_MOVIES_ENDPOINT + getApiKeyParameter()).build();
+    }
+
+    public Request getTrailersForMovieUrl(String movieId) {
+        return new Request.Builder().url(API_BASE_URL + String.format(TRAILERS_FOR_MOVIE_PATTERN, movieId) + getApiKeyParameter()).build();
     }
 
     private String getApiKeyParameter()

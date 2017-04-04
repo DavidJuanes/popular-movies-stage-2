@@ -1,9 +1,12 @@
 package com.davidjuanes.popular_movies.two.domain;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by davidgonzalez on 18/01/2017.
@@ -18,11 +21,22 @@ public class Movie implements Serializable {
 
     private static final String posterUrlPrexif = "https://image.tmdb.org/t/p/w600";
 
+    private Integer id;
     private String title;
     private String releaseDate;
     private String posterUrl;
     private Double voteAverage;
     private String synopsis;
+
+    private List<YoutubeVideo> trailers;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -64,6 +78,14 @@ public class Movie implements Serializable {
         this.synopsis = synopsis;
     }
 
+    public List<YoutubeVideo> getTrailers() {
+        return trailers;
+    }
+
+    public void setTrailers(List<YoutubeVideo> trailers) {
+        this.trailers = trailers;
+    }
+
     /**
      * It creates a Movie object from the json object of the TheMovieDb API. The json for a movie is:
      *
@@ -93,6 +115,7 @@ public class Movie implements Serializable {
         try {
             JSONObject jsonObject = new JSONObject(json);
             Movie movie = new Movie();
+            movie.setId(jsonObject.getInt("id"));
             movie.setTitle(jsonObject.getString(TITLE_TAG));
             movie.setSynopsis(jsonObject.getString(SYNOPSIS_TAG));
             movie.setPosterUrl(posterUrlPrexif + jsonObject.getString(POSTER_URL_TAG));
@@ -102,5 +125,43 @@ public class Movie implements Serializable {
         } catch (JSONException e) {
             throw new JsonParsingRuntimeException(e);
         }
+    }
+
+    /**
+     * {
+     * "id": 550,
+     * "results": [
+     * {
+     * "id": "533ec654c3a36854480003eb",
+     * "iso_639_1": "en",
+     * "iso_3166_1": "US",
+     * "key": "SUXWAEX2jlg",
+     * "name": "Trailer 1",
+     * "site": "YouTube",
+     * "size": 720,
+     * "type": "Trailer"
+     * }
+     * ]
+     * }
+     *
+     * @param json json with the trailers information
+     */
+    public void addTrailers(String json) {
+        List<YoutubeVideo> trailers = new ArrayList<>();
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            JSONArray results = jsonObject.getJSONArray("results");
+            for (int i = 0; i < results.length() ; i++) {
+                JSONObject videoJson = results.getJSONObject(i);
+                if (videoJson.getString("type").equals("Trailer") && videoJson.getString("site").equals("YouTube")) {
+                    YoutubeVideo trailer = new YoutubeVideo(videoJson.getString("key"));
+                    trailers.add(trailer);
+                }
+
+            }
+        } catch (JSONException e) {
+            throw new JsonParsingRuntimeException(e);
+        }
+        this.setTrailers(trailers);
     }
 }
