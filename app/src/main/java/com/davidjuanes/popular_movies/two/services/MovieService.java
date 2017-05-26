@@ -70,6 +70,7 @@ public class MovieService {
             {
                 Movie movie = Movie.fromJson(jArray.getJSONObject(i).toString());
                 loadTrailersIntoMovie(movie);
+                loadReveiwsIntoMovie(movie);
                 movieList.add(movie);
             }
 
@@ -86,6 +87,17 @@ public class MovieService {
             movie.addTrailers(json);
         } catch (Exception e) {
             Log.e("MovieService", e.getMessage());
+            //throw new MovieServiceException(e);
+        }
+    }
+
+    private void loadReveiwsIntoMovie(Movie movie) throws MovieServiceException {
+        try {
+            String json = theMovieDbConnector.getReviewsForMovie(movie.getId().toString(), 1);
+            Log.i("MovieService", "Trailers info in JSON: " + json);
+            movie.addReviews(json);
+        } catch (Exception e) {
+            Log.e("MovieService", e.toString());
             //throw new MovieServiceException(e);
         }
     }

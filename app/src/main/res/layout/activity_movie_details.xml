@@ -84,6 +84,4 @@
         app:layout_anchor="@+id/nestedScrollView"
         app:layout_anchorGravity="top|right"
         app:srcCompat="@drawable/ic_star_empty" />
-
-    /
 </android.support.design.widget.CoordinatorLayout>

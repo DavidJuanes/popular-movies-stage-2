@@ -18,6 +18,7 @@ import com.davidjuanes.popular_movies.two.PopularMoviesApp;
 import com.davidjuanes.popular_movies.two.R;
 import com.davidjuanes.popular_movies.two.activities.main.MoviePosterAdapter;
 import com.davidjuanes.popular_movies.two.domain.Movie;
+import com.davidjuanes.popular_movies.two.domain.MovieList;
 import com.davidjuanes.popular_movies.two.services.MovieService;
 
 import java.util.Collections;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private MovieService movieService;
     private Integer selectedPosition;
     private SharedPreferences sharedPref;
+    private MovieList loadedMovies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +50,18 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new GridLayoutManager(this, 2);
         moviesGrid.setLayoutManager(layoutManager);
 
+        if (savedInstanceState != null) {
+            loadedMovies = (MovieList) savedInstanceState.getSerializable("movies");
+        }
         //Create and attach the adapter
         //Load movies
-        updateMoviesList();
+        updateMoviesList(loadedMovies == null);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("movies", loadedMovies);
     }
 
     @Override
@@ -86,10 +97,15 @@ public class MainActivity extends AppCompatActivity {
         editor.commit();
     }
 
-    private void updateMoviesList() {
+    private void updateMoviesList(Boolean reloadFromSource) {
 
         AsyncMoviesLoad moviesLoad = new AsyncMoviesLoad(getListType());
-        moviesLoad.execute();
+        if (reloadFromSource) {
+            moviesLoad.execute();
+        }
+        else {
+            moviesLoad.onPostExecute(loadedMovies);
+        }
     }
 
     ///////////////////////////////////////////////////////////
@@ -135,6 +151,9 @@ public class MainActivity extends AppCompatActivity {
                 //moviesGrid.invalidate();
                 adapter = new MoviePosterAdapter(movies, MainActivity.this);
                 moviesGrid.setAdapter(adapter);
+                MovieList movieList = new MovieList();
+                movieList.addAll(movies);
+                loadedMovies = movieList;
             }
             catch (Exception ex) {
                 Log.e("MainActivity", "Error adding movies to the Grid", ex);
@@ -160,8 +179,9 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 Log.i("FilterDialog", "Selected Position: " + selectedPosition);
+                ListType previous = getListType();
                 setListType(selectedPosition == 0 ? ListType.POPULAR_MOVIES : ListType.TOP_RATED_MOVIES);
-                updateMoviesList();
+                updateMoviesList(!previous.equals(getListType()));
                 dialog.dismiss();
             }
         });

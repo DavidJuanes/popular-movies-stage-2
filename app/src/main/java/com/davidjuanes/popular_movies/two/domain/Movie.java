@@ -29,6 +29,7 @@ public class Movie implements Serializable {
     private String synopsis;
 
     private List<YoutubeVideo> trailers;
+    private List<Review> reviews;
 
     public Integer getId() {
         return id;
@@ -84,6 +85,14 @@ public class Movie implements Serializable {
 
     public void setTrailers(List<YoutubeVideo> trailers) {
         this.trailers = trailers;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 
     /**
@@ -163,5 +172,24 @@ public class Movie implements Serializable {
             throw new JsonParsingRuntimeException(e);
         }
         this.setTrailers(trailers);
+    }
+
+    public void addReviews(String json) {
+        List<Review> reviews = new ArrayList<>();
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            JSONArray results = jsonObject.getJSONArray("results");
+            for (int i = 0; i < results.length() ; i++) {
+                JSONObject reviewJson = results.getJSONObject(i);
+                Review review = new Review();
+                review.setAuthor(reviewJson.getString("author"));
+                review.setContent(reviewJson.getString("content"));
+                review.setUrl(reviewJson.getString("url"));
+                reviews.add(review);
+            }
+        } catch (JSONException e) {
+            throw new JsonParsingRuntimeException(e);
+        }
+        this.setReviews(reviews);
     }
 }
